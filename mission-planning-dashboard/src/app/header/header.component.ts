@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  missionMame = "Mars 2030"
+  missionName = "Mars 2030"
   rocketName = "Plasma Max"
 
   constructor() { }
