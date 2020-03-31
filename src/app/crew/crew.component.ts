@@ -5,15 +5,21 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './crew.component.html',
   styleUrls: ['./crew.component.css']
 })
+
+interface CrewMember {
+  name: string
+  firstMission: boolean
+}
+
 export class CrewComponent implements OnInit {
 
-  crew: object[] = [
+  crew: CrewMember[] = [
     { name: "Eileen Collins", firstMission: false },
     { name: "Mae Jemison", firstMission: false },
     { name: "Ellen Ochoa", firstMission: true }
   ];
 
-  selectedMember = null
+  selectedMember?: CrewMember = null
 
   constructor() { }
 
@@ -21,22 +27,21 @@ export class CrewComponent implements OnInit {
   }
 
   add(name: string, isFirstMission: boolean) {
-    if (this.crew.filter(e => e.name === name).length === 0) {
+    if (this.crew.filter(member => member.name === name).length === 0) {
       this.crew.push({ name: name, firstMission: isFirstMission })
     }
   }
 
-  edit(member: object) {
+  edit(member: CrewMember) {
     this.selectedMember = member
-
   }
 
-  remove(member: object) {
+  remove(member: CrewMember) {
     let index = this.crew.indexOf(member)
     this.crew.splice(index, 1)
   }
 
-  save(name: string, member: object) {
+  save(name: string, member: CrewMember) {
     member['name'] = name
     this.selectedMember = null
   }
